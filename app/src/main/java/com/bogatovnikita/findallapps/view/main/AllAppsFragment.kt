@@ -1,17 +1,21 @@
 package com.bogatovnikita.findallapps.view.main
 
+import android.annotation.SuppressLint
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bogatovnikita.findallapps.R
+import com.bogatovnikita.findallapps.databinding.FragmentAllAppsBinding
 import com.bogatovnikita.findallapps.databinding.FragmentButtonBinding
 
-class ButtonFragment : Fragment() {
-
-    private var _binding: FragmentButtonBinding? = null
-    private val binding: FragmentButtonBinding
+class AllAppsFragment : Fragment() {
+    private var _binding: FragmentAllAppsBinding? = null
+    private val binding: FragmentAllAppsBinding
         get() {
             return _binding!!
         }
@@ -20,22 +24,12 @@ class ButtonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentButtonBinding.inflate(inflater, container, false)
+        _binding = FragmentAllAppsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.scanStartBtn.setOnClickListener {
-            activity?.run {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, AllAppsFragment.newInstance()).addToBackStack("").commit()
-            }
-        }
-    }
-
     companion object {
-        fun newInstance() = ButtonFragment()
+        fun newInstance() = AllAppsFragment()
     }
 
     override fun onDestroy() {

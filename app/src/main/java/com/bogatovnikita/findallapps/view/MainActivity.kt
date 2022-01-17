@@ -1,9 +1,11 @@
-package com.bogatovnikita.findallapps
+package com.bogatovnikita.findallapps.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import com.bogatovnikita.findallapps.R
 import com.bogatovnikita.findallapps.databinding.ActivityMainBinding
+import com.bogatovnikita.findallapps.view.main.ButtonFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -13,6 +15,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initSwitchCompat()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, ButtonFragment.newInstance()).commit()
     }
 
     private fun initSwitchCompat() {

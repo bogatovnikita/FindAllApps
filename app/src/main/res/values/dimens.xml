@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius">10dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="height_image_view">120dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="height_text_view">40dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="height_null">0dp</dimen>
+</resources>

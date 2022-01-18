@@ -34,7 +34,7 @@ class AllAppsAdapter :
         val binding = AppItemBinding.bind(item)
         fun bind(app: InstalledApps) = with(binding) {
             appName.text = app.appName
-            appPackage.text = app.appPackageName
+            imageView.setImageDrawable(app.imageView)
         }
     }
 

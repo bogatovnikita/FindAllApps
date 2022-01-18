@@ -1,5 +1,6 @@
 package com.bogatovnikita.findallapps.view.main
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,13 +32,14 @@ class AllAppsAdapter :
     }
 
     inner class MainViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        val binding = AppItemBinding.bind(item)
+        private val binding = AppItemBinding.bind(item)
         fun bind(app: InstalledApps) = with(binding) {
             appName.text = app.appName
             imageView.setImageDrawable(app.imageView)
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addApp(app: InstalledApps) {
         allAppsData.add(app)
         notifyDataSetChanged()

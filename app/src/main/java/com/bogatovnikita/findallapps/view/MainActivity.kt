@@ -14,19 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initSwitchCompat()
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, ButtonFragment.newInstance()).commit()
     }
 
-    private fun initSwitchCompat() {
-        binding.switchCompat.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
-    }
+
 }

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bogatovnikita.findallapps.R
@@ -58,9 +57,11 @@ class AllAppsFragment : Fragment(), OnMyItemClickListener {
     }
 
     override fun onItemClick(installedApps: InstalledApps) {
-        activity?.run {
+        requireActivity().run {
             supportFragmentManager.beginTransaction()
-                .add(R.id.container, InfoAppScreenFragment.newInstance()).commit()
+                .replace(R.id.container, InfoAppScreenFragment.newInstance())
+                .addToBackStack("")
+                .commit()
         }
     }
 }

@@ -5,18 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bogatovnikita.findallapps.R
+import com.bogatovnikita.findallapps.databinding.FragmentInfoAppScreenBinding
 
-class InfoAppScreenFragment : Fragment() {
+class InfoAppScreenFragment() : Fragment() {
+
+    private var _binding: FragmentInfoAppScreenBinding? = null
+    private val binding: FragmentInfoAppScreenBinding
+        get() {
+            return _binding!!
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_info_app_screen, container, false)
+        _binding =
+            FragmentInfoAppScreenBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {
         fun newInstance() = InfoAppScreenFragment()
     }
+
+
+
 }

@@ -7,21 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bogatovnikita.findallapps.R
 import com.bogatovnikita.findallapps.databinding.FragmentAllAppsBinding
 import com.bogatovnikita.findallapps.view.details.InfoAppScreenFragment
+import com.bogatovnikita.findallapps.viewmodel.AppData
 import com.bogatovnikita.findallapps.viewmodel.InstalledApps
 
 class AllAppsFragment : Fragment(), OnMyItemClickListener {
 
     private val adapter: AllAppsAdapter by lazy { AllAppsAdapter(this) }
+
     private var _binding: FragmentAllAppsBinding? = null
     private val binding: FragmentAllAppsBinding
         get() {
             return _binding!!
         }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,11 +59,6 @@ class AllAppsFragment : Fragment(), OnMyItemClickListener {
     }
 
     override fun onItemClick(installedApps: InstalledApps) {
-        requireActivity().run {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, InfoAppScreenFragment.newInstance())
-                .addToBackStack("")
-                .commit()
-        }
+
     }
 }

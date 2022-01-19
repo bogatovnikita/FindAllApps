@@ -1,15 +1,19 @@
 package com.bogatovnikita.findallapps.view.main
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bogatovnikita.findallapps.R
 import com.bogatovnikita.findallapps.databinding.AppItemBinding
 import com.bogatovnikita.findallapps.viewmodel.InstalledApps
+import kotlin.math.log
 
-class AllAppsAdapter :
+class AllAppsAdapter(val listener: OnMyItemClickListener) :
     RecyclerView.Adapter<AllAppsAdapter.MainViewHolder>() {
 
     private var allAppsData: MutableList<InstalledApps> = mutableListOf()
@@ -24,7 +28,7 @@ class AllAppsAdapter :
     }
 
     override fun onBindViewHolder(holder: AllAppsAdapter.MainViewHolder, position: Int) {
-        return holder.bind(allAppsData[position])
+        holder.bind(allAppsData[position])
     }
 
     override fun getItemCount(): Int {
@@ -33,9 +37,12 @@ class AllAppsAdapter :
 
     inner class MainViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = AppItemBinding.bind(item)
-        fun bind(app: InstalledApps) = with(binding) {
-            appName.text = app.appName
-            imageView.setImageDrawable(app.imageView)
+        fun bind(app: InstalledApps) {
+            with(binding) {
+                appName.text = app.appName
+                imageView.setImageDrawable(app.imageView)
+            }
+            itemView.setOnClickListener { listener.onItemClick(app) }
         }
     }
 

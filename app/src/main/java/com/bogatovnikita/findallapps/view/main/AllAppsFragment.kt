@@ -6,15 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bogatovnikita.findallapps.R
 import com.bogatovnikita.findallapps.databinding.FragmentAllAppsBinding
+import com.bogatovnikita.findallapps.view.details.InfoAppScreenFragment
 import com.bogatovnikita.findallapps.viewmodel.InstalledApps
 
-class AllAppsFragment : Fragment() {
+class AllAppsFragment : Fragment(), OnMyItemClickListener {
 
-    private val adapter = AllAppsAdapter()
-
+    private val adapter: AllAppsAdapter by lazy { AllAppsAdapter(this) }
     private var _binding: FragmentAllAppsBinding? = null
     private val binding: FragmentAllAppsBinding
         get() {
@@ -52,7 +54,13 @@ class AllAppsFragment : Fragment() {
                     adapter.addApp(tempApp)
                 }
             }
+        }
+    }
 
+    override fun onItemClick(installedApps: InstalledApps) {
+        activity?.run {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container, InfoAppScreenFragment.newInstance()).commit()
         }
     }
 }

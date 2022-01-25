@@ -36,7 +36,7 @@ class InfoAppScreenFragment() : Fragment() {
         with(binding) {
             appName.text = app.appName
             imageView.setImageDrawable(app.imageView)
-            size_app.text = app.sizeApp.toString()
+            size_app.text = app.sizeApp.toString() + "MB"
             targetSdkVersion.text = app.targetSDKVersion.toString()
             installationData.text = app.installationData?.let { parseDate(it) }
         }

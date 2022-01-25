@@ -6,5 +6,7 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="height_text_view">40dp</dimen>
     <dimen name="margin_large">16dp</dimen>
-    <dimen name="height_null">0dp</dimen>
+    <dimen name="text_size_large">40sp</dimen>
+    <dimen name="text_size_normal">30sp</dimen>
+
 </resources>

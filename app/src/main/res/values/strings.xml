@@ -5,4 +5,8 @@
     <string name="on">ON</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="size_app">Size:</string>
+    <string name="targetsdkversion_app">TargetSDKVersion:</string>
+    <string name="installation_date_app">Installation date:</string>
+    <string name="back_btn">Back</string>
 </resources>

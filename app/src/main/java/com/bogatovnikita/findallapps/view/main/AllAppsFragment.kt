@@ -26,6 +26,11 @@ class AllAppsFragment : Fragment(), OnMyItemClickListener {
             return _binding!!
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setRetainInstance(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

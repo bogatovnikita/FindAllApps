@@ -19,6 +19,10 @@ class InfoAppScreenFragment() : Fragment() {
             return _binding!!
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setRetainInstance(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +43,11 @@ class InfoAppScreenFragment() : Fragment() {
             size_app.text = app.sizeApp.toString() + "MB"
             targetSdkVersion.text = app.targetSDKVersion.toString()
             installationData.text = app.installationData?.let { parseDate(it) }
+            backBtn.setOnClickListener {
+                activity?.let {
+                    it.supportFragmentManager.popBackStack()
+                }
+            }
         }
     }
 

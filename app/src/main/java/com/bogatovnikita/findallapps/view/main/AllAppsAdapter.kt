@@ -1,22 +1,17 @@
 package com.bogatovnikita.findallapps.view.main
 
-import android.annotation.SuppressLint
-import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bogatovnikita.findallapps.R
 import com.bogatovnikita.findallapps.databinding.AppItemBinding
-import com.bogatovnikita.findallapps.viewmodel.InstalledApps
-import kotlin.math.log
+import com.bogatovnikita.findallapps.model.InstalledApps
 
 class AllAppsAdapter(val listener: OnMyItemClickListener) :
     RecyclerView.Adapter<AllAppsAdapter.MainViewHolder>() {
 
-    private var allAppsData: MutableList<InstalledApps> = mutableListOf()
+    private var allAppsData: List<InstalledApps> = listOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -46,9 +41,8 @@ class AllAppsAdapter(val listener: OnMyItemClickListener) :
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addApp(app: InstalledApps) {
-        allAppsData.add(app)
+    fun setApp(app: List<InstalledApps>) {
+        this.allAppsData = app
         notifyDataSetChanged()
     }
 }

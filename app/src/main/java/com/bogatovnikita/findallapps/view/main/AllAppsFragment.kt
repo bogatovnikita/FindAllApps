@@ -7,23 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bogatovnikita.findallapps.APP_PARCELABLE
 import com.bogatovnikita.findallapps.R
 import com.bogatovnikita.findallapps.databinding.FragmentAllAppsBinding
+import com.bogatovnikita.findallapps.model.InstalledApps
 import com.bogatovnikita.findallapps.view.details.InfoAppScreenFragment
-import com.bogatovnikita.findallapps.viewmodel.AppData
-import com.bogatovnikita.findallapps.viewmodel.InstalledApps
 
 class AllAppsFragment : Fragment(), OnMyItemClickListener {
 
+
     private val adapter: AllAppsAdapter by lazy { AllAppsAdapter(this) }
+    private val dataApps: MutableList<InstalledApps> = mutableListOf()
 
     private var _binding: FragmentAllAppsBinding? = null
     private val binding: FragmentAllAppsBinding
         get() {
             return _binding!!
         }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +37,7 @@ class AllAppsFragment : Fragment(), OnMyItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        adapter.setApp(dataApps)
     }
 
     companion object {
@@ -50,15 +53,31 @@ class AllAppsFragment : Fragment(), OnMyItemClickListener {
             mainFragmentRecyclerView.adapter = adapter
             if (packages != null) {
                 for (packageInfo in packages) {
+                    val appName = packageInfo.loadLabel(pm) as String
+                    val imageView = packageInfo.loadIcon(pm)
+                    val sizeApp = packageInfo.publicSourceDir.length
+                    val targetSDKVersion = packageInfo.targetSdkVersion
+                    val installationData =
+                        context?.let { pm.getPackageInfo(it.packageName, 0) }?.firstInstallTime
                     val tempApp =
-                        InstalledApps(packageInfo.loadLabel(pm) as String, packageInfo.loadIcon(pm))
-                    adapter.addApp(tempApp)
+                        InstalledApps(
+                            appName,
+                            imageView,
+                            sizeApp,
+                            targetSDKVersion,
+                            installationData
+                        )
+                    dataApps.add(tempApp)
                 }
             }
         }
     }
 
     override fun onItemClick(installedApps: InstalledApps) {
-
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.container, InfoAppScreenFragment.newInstance(Bundle().apply {
+                putParcelable(APP_PARCELABLE, installedApps)
+            })).addToBackStack("").commit()
     }
+
 }

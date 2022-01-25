@@ -1,6 +1,5 @@
 package com.bogatovnikita.findallapps.view.main
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,14 +47,8 @@ class ButtonFragment : Fragment() {
         _binding = null
     }
 
-    private val SHARED_PREFS = "key"
     private fun initSwitchCompat() {
-        val sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
-        binding.switchCompat.isChecked = sharedPreferences.getBoolean(SHARED_PREFS, false)
         binding.switchCompat.setOnCheckedChangeListener { _, isChecked ->
-            val editor = sharedPreferences.edit()
-            editor.putBoolean(SHARED_PREFS, isChecked)
-            editor.apply()
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {

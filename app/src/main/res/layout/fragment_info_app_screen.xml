@@ -58,21 +58,20 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_small"
                     android:layout_weight="1"
                     android:gravity="left|center"
                     android:text="@string/size_app"
-                    android:textSize="30sp"
+                    android:textSize="@dimen/text_size_normal_25sp"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/size_app"
+                    android:layout_marginRight="@dimen/margin_small"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_small"
                     android:layout_weight="1"
                     android:gravity="right|center"
-                    android:textSize="@dimen/text_size_normal"
+                    android:textSize="@dimen/text_size_normal_25sp"
                     tools:ignore="RtlHardcoded" />
             </LinearLayout>
 
@@ -85,21 +84,20 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_small"
                     android:layout_weight="2"
                     android:gravity="left|center"
                     android:text="@string/targetsdkversion_app"
-                    android:textSize="@dimen/text_size_normal"
+                    android:textSize="@dimen/text_size_normal_25sp"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/target_sdk_version"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_small"
                     android:layout_weight="1"
+                    android:layout_marginRight="@dimen/margin_small"
                     android:gravity="right|center"
-                    android:textSize="@dimen/text_size_normal"
+                    android:textSize="@dimen/text_size_normal_25sp"
                     tools:ignore="RtlHardcoded" />
 
             </LinearLayout>
@@ -113,21 +111,20 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_small"
                     android:layout_weight="2"
                     android:gravity="left|center"
                     android:text="@string/installation_date_app"
-                    android:textSize="@dimen/text_size_normal"
+                    android:textSize="@dimen/text_size_normal_25sp"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/installation_Data"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_small"
                     android:layout_weight="1"
                     android:gravity="right|center"
-                    android:textSize="@dimen/text_size_normal"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:textSize="@dimen/text_size_normal_25sp"
                     tools:ignore="RtlHardcoded" />
 
             </LinearLayout>

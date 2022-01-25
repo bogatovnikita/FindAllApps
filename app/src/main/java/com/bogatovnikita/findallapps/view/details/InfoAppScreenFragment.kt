@@ -10,8 +10,9 @@ import com.bogatovnikita.findallapps.databinding.FragmentInfoAppScreenBinding
 import com.bogatovnikita.findallapps.model.InstalledApps
 import kotlinx.android.synthetic.main.fragment_info_app_screen.*
 import java.text.SimpleDateFormat
+import java.util.*
 
-class InfoAppScreenFragment() : Fragment() {
+class InfoAppScreenFragment : Fragment() {
     private lateinit var app: InstalledApps
     private var _binding: FragmentInfoAppScreenBinding? = null
     private val binding: FragmentInfoAppScreenBinding
@@ -23,6 +24,7 @@ class InfoAppScreenFragment() : Fragment() {
         super.onCreate(savedInstanceState)
         setRetainInstance(true)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +39,10 @@ class InfoAppScreenFragment() : Fragment() {
         arguments?.let {
             it.getParcelable<InstalledApps>(APP_PARCELABLE)?.let { app = it }
         }
+        initView()
+    }
+
+    private fun initView() {
         with(binding) {
             appName.text = app.appName
             imageView.setImageDrawable(app.imageView)
@@ -44,9 +50,7 @@ class InfoAppScreenFragment() : Fragment() {
             targetSdkVersion.text = app.targetSDKVersion.toString()
             installationData.text = app.installationData?.let { parseDate(it) }
             backBtn.setOnClickListener {
-                activity?.let {
-                    it.supportFragmentManager.popBackStack()
-                }
+                activity?.supportFragmentManager?.popBackStack()
             }
         }
     }
@@ -55,9 +59,13 @@ class InfoAppScreenFragment() : Fragment() {
         fun newInstance(bundle: Bundle) = InfoAppScreenFragment().apply { arguments = bundle }
     }
 
-    fun parseDate(date: Long): String {
-        val sdf = SimpleDateFormat("MM.dd.yyyy")
-        return sdf.format(date)
+    private fun parseDate(date: Long): String {
+        val sdf = SimpleDateFormat("dd.MM.yyyy")
+        return sdf.format(date).toString()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

@@ -19,7 +19,6 @@ class AllAppsFragment : Fragment(), OnMyItemClickListener {
 
     private val adapter: AllAppsAdapter by lazy { AllAppsAdapter(this) }
     private val dataApps: MutableList<InstalledApps> = mutableListOf()
-
     private var _binding: FragmentAllAppsBinding? = null
     private val binding: FragmentAllAppsBinding
         get() {
@@ -85,4 +84,8 @@ class AllAppsFragment : Fragment(), OnMyItemClickListener {
             })).addToBackStack("").commit()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
